@@ -50,13 +50,6 @@ def getTopicAnalyze(_id, topN = 25):
     return None
   pmi, pcc, lf, tg = getData(_id, 'pmi'), getData(_id, 'pcc'), getData(_id, 'lf'), np.swapaxes(getData(_id, 'tg'), 0, 1)
   strength = np.abs(pmi * pcc)
-  # return {'token': te[0], 
-  #         'entities': te[1],
-  #         'trends': (getTrendById(_id) / year_gross).tolist(),
-  #         'pmi': ranker(pmi, topic_tokens)[:topN],
-  #         'pcc': ranker(pcc, topic_tokens)[:topN],
-  #         'lf': ranker(lf, topic_tokens)[:topN],
-  #         'lf_self': [lf[_id], ranki(lf, lf[_id])]}
   return {'token': te[0], 
           'entities': te[1],
           'trends': (getTrendById(_id) / year_gross).tolist(),
