@@ -74,15 +74,15 @@ def getCrossTopicsAnalyze(_id1, _id2):
   strength1, strength2 = np.abs(pmi1 * pcc1), np.abs(pmi2 * pcc2)
   lf1, lf2 = getData(_id1, 'lf'), getData(_id2, 'lf')
   tg1, tg2 = getData(_id1, 'tg'), getData(_id2, 'tg')
-  pmi, pcc, strength, lf, tg = pmi1[_id2], pcc1[_id2], strength1[_id2], lf1[_id2], tg1[_id2]
+  pmi, pcc, strength, lfi1, lfi2, tgi1, tgi2 = pmi1[_id2], pcc1[_id2], strength1[_id2], lf1[_id2], lf2[_id1], tg1[_id2], tg2[_id1]
   return {
     'token': [te1[0], te2[0]],
     'entities': [te1[1], te2[1]],
     'pmi': [pmi, ranki(pmi1, pmi), ranki(pmi2, pmi)],
     'pcc': [pcc, ranki(pcc1, pcc), ranki(pcc2, pcc)],
     'strength': [strength, ranki(strength1, strength), ranki(strength2, strength)],
-    'lf': [lf, ranki(lf1, lf), ranki(lf2, lf)],
-    'tg': list(map(lambda year: (tg[year], ranki(tg1[:,year], tg[year]), ranki(tg2[:,year], tg[year])), range(30)))
+    'lf': [lfi1, ranki(lf1, lfi1), lfi2, ranki(lf2, lfi2)],
+    'tg': list(map(lambda year: (tgi1[year], ranki(tg1[:,year], tgi1[year]), tgi2[year], ranki(tg2[:,year], tgi2[year])), range(30)))
   }
 
 def getMore(_id, category, skip, limit, subParam = None):
