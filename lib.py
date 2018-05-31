@@ -7,7 +7,7 @@ import json
 ps = PorterStemmer()
 lmtzr = WordNetLemmatizer()
 mongo_config = json.load(open('config.json'))['mongo']
-client = MongoClient(mongo_config['host'], mongo_config['port'], mongo_config['username'], mongo_config['password'], mongo_config['authSource'])
+client = MongoClient(mongo_config['host'], port=mongo_config['port'], username=mongo_config['username'], password=mongo_config['password'], authSource=mongo_config['authSource'])
 db = client['interdisciplinary']
 year_gross = np.asarray(db.values.find_one({'_id': 'year_gross'})['data'], dtype=int)
 
