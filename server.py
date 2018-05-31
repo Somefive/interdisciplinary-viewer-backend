@@ -14,7 +14,7 @@ def hello():
 @app.route("/analyze/<int:_id>")
 @cache.cached()
 def analyze(_id):
-  return jsonify(getTopicAnalyze(_id, 5))
+  return jsonify(getTopicAnalyze(_id, 10))
 
 @app.route("/analyze/more/<int:_id>/<category>/<int:skip>/<int:limit>/<int:subParam>")
 def more(_id, category, skip, limit, subParam):
