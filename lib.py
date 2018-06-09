@@ -18,6 +18,7 @@ topics = list(sorted(db.topics.find({}), key=lambda x: x['_id']))
 for topic in topics:
   for entity in topic['entities']:
     entity_lookup[entity] = len(topic_tokens)
+  entity_lookup[topic['token']] = len(topic_tokens)
   topic_tokens.append(topic['token'])
 
 def getTopicByEntity(_entity):
