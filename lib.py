@@ -89,7 +89,10 @@ def getMore(_id, category, skip, limit, subParam = None):
   te = getTopicById(_id)
   if not te:
     return None
-  data = getData(_id, category)
+  if category == 'strength':
+    data = np.abs(getData(_id, 'pmi') * getData(_id, 'pcc'))
+  else:
+    data = getData(_id, category)
   if category != 'tg':
     return ranker(data, topic_tokens)[skip:skip+limit]
   else:
