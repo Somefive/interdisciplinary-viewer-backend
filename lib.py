@@ -41,6 +41,10 @@ def getTrendById(_id):
   _ = db.trends.find_one({'_id': _id}, {'data': {'$slice': [_id, 1]}})
   return np.asarray(_['data'][0], dtype=int) if _ else None
 
+def getCrossTrendById(_id1, _id2):
+  _ = db.trends.find_one({'_id': _id1}, {'data': {'$slice': [_id2, 1]}})
+  return np.asarray(_['data'][0], dtype=int) if _ else None
+
 def getData(_id, attr):
   return np.asarray(db[attr].find_one({'_id': _id})['data'], dtype=float)
 
@@ -78,6 +82,7 @@ def getCrossTopicsAnalyze(_id1, _id2):
   return {
     'token': [te1[0], te2[0]],
     'entities': [te1[1], te2[1]],
+    'trends': (getCrossTrendById(_id1, _id2) / year_gross).tolist(),
     'pmi': [pmi, ranki(pmi1, pmi), ranki(pmi2, pmi)],
     'pcc': [pcc, ranki(pcc1, pcc), ranki(pcc2, pcc)],
     'strength': [strength, ranki(strength1, strength), ranki(strength2, strength)],
