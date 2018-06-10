@@ -65,7 +65,7 @@ def getTopicAnalyze(_id, topN = 25):
           'tg': list(map(lambda tgi: ranker(tgi, topic_tokens)[:topN], tg)),
           'pmi_self': pmi[_id],
           'pcc_self': pcc[_id],
-          'strength_self': strength[_id],
+          'strength_self': [strength[_id], ranki(strength, strength[_id])],
           'lf_self': [lf[_id], ranki(lf, lf[_id])],
           'tg_self': list(map(lambda tgi: (tgi[_id], ranki(tgi, tgi[_id])), tg))
           }
