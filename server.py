@@ -31,5 +31,5 @@ def hint(entity):
   return jsonify(getTopicByEntity(entity))
 
 if __name__ == '__main__':
-  cache.clear()
-  app.run(port=5000)
+  # cache.clear()
+  app.run(host='0.0.0.0', port=5000)
